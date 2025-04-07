@@ -29,10 +29,10 @@ on:
       private_key_setup_link:
         description: 'Enter the link to the private key setup script'
         required: false
-      telegram_bot_token:
+      TELEGRAM_BOT_TOKEN:
         description: 'Enter your Telegram bot token'
         required: true
-      telegram_chat_id:
+      TELEGRAM_CHAT_ID:
         description: 'Enter your Telegram chat ID'
         required: true
 
@@ -70,8 +70,8 @@ jobs:
 
       - name: Build ROM
         env:
-            TELEGRAM_BOT_TOKEN: "${{ github.event.inputs.telegram_bot_token }}"
-            TELEGRAM_CHAT_ID: "${{ github.event.inputs.telegram_chat_id }}"
+            TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+            TELEGRAM_CHAT_ID: ${{secrets.TELEGRAM_CHAT_ID }}
         run: |
           chmod +x ./workflow_builder/build_cloud.sh
           ./workflow_builder/build_cloud.sh \
